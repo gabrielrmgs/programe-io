@@ -99,6 +99,11 @@ public class Atividade implements Serializable {
         }
         return Objects.equals(this.dataAtividade, other.dataAtividade);
     }
+
+    @Override
+    public String toString() {
+        return "Atividade{" + "id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", dataAtividade=" + dataAtividade + '}';
+    }
     
     
 }

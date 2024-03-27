@@ -3,6 +3,8 @@
   <persistence-unit name="AtividadeTarefasPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>modelo.Atividade</class>
+    <class>modelo.Pessoa</class>
+    <class>modelo.Endereco</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/tarefas"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
