@@ -15,7 +15,7 @@ public class Pessoa implements Serializable{
     private String nome;
     @Column(length = 11)
     private String cpf;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
     @OneToMany
     private List<Atividade> atividades;

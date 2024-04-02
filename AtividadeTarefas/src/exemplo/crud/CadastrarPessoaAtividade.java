@@ -1,22 +1,21 @@
 package exemplo.crud;
 
 import javax.persistence.EntityManager;
-import modelo.Atividade;
 import utilitario.JpaUtil;
 
-public class AtualizarAtividade {
-    
-    
+public class CadastrarPessoaAtividade {
+
     public static void main(String[] args) {
         
         EntityManager em = JpaUtil.conexao();
+        
         em.getTransaction().begin();
         
-        Atividade atividade = em.find(Atividade.class, 1L);
-        atividade.setDescricao("atualizado");
-        System.out.println(atividade);
+        
         
         em.getTransaction().commit();
         JpaUtil.fecharConexao();
+        
     }
+    
 }
