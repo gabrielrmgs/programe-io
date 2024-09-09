@@ -1,14 +1,17 @@
 public class Contato {
     private TipoContato tipoContato;
+    private String nome;
     private String numero;
 
 
     public String mostrarContato(){
-        return "Tipo: "+String.valueOf(tipoContato)+"\nNúmero: "+numero;
+        return "nome: "+nome+"Tipo: "+String.valueOf(tipoContato)+"\nNúmero: "+numero;
     }
 
-    public Contato(TipoContato tipoContato, String numero) {
+
+    public Contato(TipoContato tipoContato, String nome, String numero) {
         this.tipoContato = tipoContato;
+        this.nome = nome;
         this.numero = numero;
     }
 
@@ -20,6 +23,14 @@ public class Contato {
         this.tipoContato = tipoContato;
     }
 
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getNumero() {
         return this.numero;
     }
@@ -27,5 +38,6 @@ public class Contato {
     public void setNumero(String numero) {
         this.numero = numero;
     }
+    
 
 }

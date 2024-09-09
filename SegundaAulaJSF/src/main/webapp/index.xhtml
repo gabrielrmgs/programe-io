@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Segunda aula</title>
+    </h:head>
+    <h:body style="background-color: #1c1b22">
+        <div class="card" style="background-color: #1c1b22">
+            <h:form style="background-color: #1c1b22">
+                <p:growl id="messages"/>
+
+                <p:menubar hideDelay="1000" style="background-color: #1c1b22">
+
+                    <p:submenu label="Usuários" icon="pi pi-fw pi-user">
+                        <p:menuitem value="Cadastrar" icon="pi pi-fw pi-user-plus"/>
+                        <p:menuitem value="Remover" icon="pi pi-fw pi-user-minus"/>
+                        <p:submenu label="Pesquisar" icon="pi pi-fw pi-users">
+                            <p:submenu label="Filtro" icon="pi pi-fw pi-filter">
+                                <p:menuitem value="PDF" icon="pi pi-fw pi-print"/>
+                            </p:submenu>
+                            <p:menuitem value="Listar" icon="pi pi-fw pi-bars"/>
+                        </p:submenu>
+                    </p:submenu>
+
+                    <p:submenu label="Eventos" icon="pi pi-fw pi-calendar">
+                        <p:submenu label="Editar" icon="pi pi-fw pi-pencil">
+                            <p:menuitem value="Salvar" icon="pi pi-fw pi-calendar-plus"/>
+                            <p:menuitem value="Deletar" icon="pi pi-fw pi-calendar-minus"/>
+                        </p:submenu>
+                        <p:submenu label="Marcado" icon="pi pi-fw pi-calendar-times">
+                            <p:menuitem value="Remover" icon="pi pi-fw pi-calendar-minus"/>
+                        </p:submenu>
+                    </p:submenu>
+
+                    <p:divider layout="vertical"/>
+
+                    <p:menuitem value="Sair" icon="pi pi-fw pi-power-off"/>
+
+                    <f:facet name="end">
+                        <div class="ui-input-icon-left mr-2">
+                            <i class="pi pi-fw pi-search" />
+                            <p:inputText placeholder="Pesquisar"/>
+                        </div>
+                    </f:facet>
+                </p:menubar>
+            </h:form>
+        </div>
+        <p:panelGrid  style="margin-top: 54px;" columns="2" >
+            <h:form>
+
+                <p:fieldset toggleable="true" title="Cadastro de cliente" legend="Cadastrar cliente" style="width: 720px;">
+
+                    <h:panelGrid>
+                        <p:outputLabel>Digite seu nome: </p:outputLabel>
+                        <p:inputText placeholder="Nome" value="#{managerCliente.nome}"/>
+                        <p:outputLabel>Digite sua senha: </p:outputLabel>
+                        <p:password id="toggle" toggleMask="true" redisplay="true"/>
+                        <p:outputLabel>Número de telefone: </p:outputLabel>
+                        <p:inputMask mask="(99) 9 9999-9999" id="telefone"></p:inputMask>
+                        <p:outputLabel>CPF:</p:outputLabel>
+                        <p:inputMask mask="999.999.999-99" validateMask="true" id="cpf"/>
+                    </h:panelGrid>
+                    <p:commandButton value="Salvar" style="float: right"/>
+                </p:fieldset>
+
+            </h:form>
+            <h:form>
+
+                <p:fieldset toggleable="true" title="Cadastro de produto" legend="Cadastrar produto" style="width: 720px;">
+
+                    <h:panelGrid>
+                        <p:outputLabel>Nome do produto: </p:outputLabel>
+                        <p:inputText placeholder="Nome"/>
+                        <p:outputLabel value="Senha" for="@previous" />
+                        <p:password id="toggle" toggleMask="true" redisplay="true"/>
+                        <p:outputLabel>Número de telefone: </p:outputLabel>
+                        <p:inputMask mask="(99) 9 9999-9999" id="telefone"></p:inputMask>
+                        <p:outputLabel>CPF:</p:outputLabel>
+                        <p:inputMask mask="999.999.999-99" validateMask="true" id="cpf"/>
+                    </h:panelGrid>
+                    <p:commandButton value="Salvar" style="float: right"/>
+                </p:fieldset>
+
+            </h:form>
+        </p:panelGrid>
+    </h:body>
+</html>
