@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Lista de presença</title>
+    </h:head>
+
+    <h:body>
+        <p:growl id="growl" showDetail="true" />
+        <h:form style="display: flex; flex-direction: column; align-items: center; justify-items: center; margin-top: 99px" id="formulario">
+            <span class="ui-float-label field" style="display: flex; flex-direction: column;">
+                <p:inputText styleClass="block" id="float-input" value="#{alunoManager.aluno.matricula}"/>
+                <p:outputLabel styleClass="block" for="float-input" value="Matrícula"/>
+                <small style="margin-bottom: -12px">Insira o número de matrícula</small>
+            </span>
+            <span class="ui-float-label field" style="display: flex; flex-direction: column; margin-top: 33px">
+                <p:inputText styleClass="block" id="float-inputt" value="#{alunoManager.aluno.nome}"/>
+                <p:outputLabel styleClass="block" for="float-inputt" value="Nome"/>
+                <small style="margin-bottom: -12px">Insira o seu nome</small>
+            </span>
+
+            <p:commandButton type="submit" value="Marcar presença" style="margin-top: 66px" actionListener="#{alunoManager.salvar()}" update="formulario"/>
+        </h:form>
+        <h1>#{alunoManager.aluno.nome}</h1>
+    </h:body>
+</html>
