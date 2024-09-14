@@ -1,5 +1,6 @@
 package io.programe.presenca.modelos;
 
+import io.programe.presenca.genericos.EntidadeGenerica;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +23,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @Entity
 @Table
-public class Escola {
+public class Escola extends EntidadeGenerica {
     
     @Id
     @SequenceGenerator(name = "seq_escola", sequenceName = "seq_escola")

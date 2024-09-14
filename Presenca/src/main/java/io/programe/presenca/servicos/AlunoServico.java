@@ -5,6 +5,7 @@
 package io.programe.presenca.servicos;
 
 import io.programe.presenca.modelos.Aluno;
+import io.programe.presenca.utilitarios.Aviso;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -17,5 +18,6 @@ public class AlunoServico {
     
     public void salvar(Aluno aluno) {
         em.persist(aluno);
+        Aviso.aviso("Aluno cadastrado com sucesso!");
     }
 }

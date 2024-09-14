@@ -35,4 +35,5 @@ public class AlunoManager implements Serializable{
         alunoServico.salvar(aluno);
         Aviso.aviso("Aluno cadastrado com sucesso!");
     }
+    
 }
