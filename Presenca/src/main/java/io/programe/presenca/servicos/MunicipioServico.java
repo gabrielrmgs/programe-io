@@ -4,6 +4,7 @@
  */
 package io.programe.presenca.servicos;
 
+import io.programe.presenca.genericos.ServicoGenerico;
 import io.programe.presenca.modelos.Municipio;
 import io.programe.presenca.projections.MunicipioProjecao;
 import jakarta.ejb.Stateless;
@@ -21,23 +22,20 @@ import java.util.stream.Collectors;
  * @author Gabri
  */
 @Stateless
-public class MunicipioServico {
+public class MunicipioServico extends ServicoGenerico<Municipio>{
 
-    @PersistenceContext
-    EntityManager em;
-
-    public void salvar(Municipio municipio) {
-        em.persist(municipio);
+    public MunicipioServico() {
+        super(Municipio.class);
     }
-
+    
     public String todosNomesMunicipio() {
-        Query sql = em.createNativeQuery("SELECT nome FROM municipio m");
+        Query sql = getEntityManager().createNativeQuery("SELECT nome FROM municipio m");
         return sql.getResultList().toString();
     }
 
     public List<String> buscarMunicipios() {
         List<String> nomesMun = null;
-        Query sql = em.createNativeQuery("SELECT m.nome as Nome, m.id as Id FROM municipio m");
+        Query sql = getEntityManager().createNativeQuery("SELECT m.nome as Nome, m.id as Id FROM municipio m");
         List<MunicipioProjecao> municipios = sql.getResultList();
         for (MunicipioProjecao mun : municipios) {
             nomesMun.add(mun.getNome());

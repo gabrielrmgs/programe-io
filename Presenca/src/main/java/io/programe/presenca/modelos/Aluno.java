@@ -22,7 +22,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class Aluno extends EntidadeGenerica {
     
     @Id
