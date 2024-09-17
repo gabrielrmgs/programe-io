@@ -30,7 +30,7 @@ import lombok.ToString;
 @MappedSuperclass
 public abstract class EntidadeGenerica implements Serializable {
     
-    public Boolean ativo;
+    public Boolean ativo = true;
     @Temporal(TemporalType.TIMESTAMP)
     public Date dataCadastro;
     @Temporal(TemporalType.TIMESTAMP)

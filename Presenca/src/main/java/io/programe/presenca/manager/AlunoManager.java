@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package io.programe.presenca.manager;
 
 import io.programe.presenca.modelos.Aluno;
@@ -12,6 +8,7 @@ import jakarta.ejb.EJB;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +22,7 @@ public class AlunoManager implements Serializable{
     AlunoServico alunoServico;    
     
     private Aluno aluno;
+    private List<Aluno> alunos;
     
     @PostConstruct
     public void instanciar() {
@@ -34,6 +32,10 @@ public class AlunoManager implements Serializable{
     public void salvar() {
         alunoServico.salvar(aluno);
         Aviso.aviso("Aluno cadastrado com sucesso!");
+    }
+    
+    public void pesquisar() {
+        alunos = alunoServico.findAll();
     }
     
 }

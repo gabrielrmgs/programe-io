@@ -41,7 +41,7 @@ public class ServicoGenerico<T> {
     }
     
     public List<T> findAll() {
-        return entityManager.createQuery("SELECT e FROM "+ entidade.getName()+" e").getResultList();
+        return entityManager.createQuery("SELECT e FROM "+ entidade.getName()+" e WHERE e.ativo = true").getResultList();
     }
     
 }

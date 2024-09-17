@@ -10,29 +10,29 @@
     </h:head>
 
     <h:body>
-        <p:growl id="growl" showDetail="true" />
-        <h:form style="display: flex; flex-direction: column; align-items: center; justify-items: center; margin-top: 99px" id="formulario">
-            <span class="ui-float-label field" style="display: flex; flex-direction: column;">
-                <p:inputText styleClass="block" id="float-input" value="#{alunoManager.aluno.matricula}"/>
-                <p:outputLabel styleClass="block" for="float-input" value="Matrícula"/>
-                <small style="margin-bottom: -12px">Insira o número de matrícula</small>
-            </span>
-            <span class="ui-float-label field" style="display: flex; flex-direction: column; margin-top: 33px">
-                <p:inputText styleClass="block" id="float-inputt" value="#{alunoManager.aluno.nome}"/>
-                <p:outputLabel styleClass="block" for="float-inputt" value="Nome"/>
-                <small style="margin-bottom: -12px">Insira o seu nome</small>
-            </span>
-            <div class="field col-12 md:col-4" style="margin-top: 24px">
-                <p:selectOneMenu id="hideNoselectionOption" value="#{municipioSelecao.hideNoSelectOption}"
-                                 hideNoSelectionOption="#{not empty municipioSelecao.hideNoSelectOption}">
-                    <p:ajax update="@this" process="@this"/>
-                    <f:selectItem itemLabel="Selecione sua cidade" itemValue="#{alunoManager.aluno.municipio}" noSelectionOption="true"/>
-                    <f:selectItems value="#{municipioSelecao.municipiosPiaui}"/>
-                    
-                </p:selectOneMenu>
-            </div>
-            <p:commandButton type="submit" value="Marcar presença" style="margin-top: 66px" actionListener="#{alunoManager.salvar()}" update="formulario"/>
-        </h:form>
-        <h1>#{alunoManager.aluno.nome}</h1>
+        <div class="card">
+            <h:form>
+                <p:menubar>
+                    <p:submenu label="Alunos" icon="pi pi-user">
+                        <p:menuitem value="Cadastrar" icon="pi pi-user-plus" url="aluno.xhtml"/>
+                        <p:menuitem value="Pesquisar" icon="pi pi-search" url="pesquisarAluno.xhtml"/>
+                    </p:submenu>
+                    <p:submenu label="GREs" icon="pi pi-user">
+                        <p:menuitem value="Cadastrar" icon="pi pi-plus-circle" url="#"/>
+                        <p:menuitem value="Pesquisar" icon="pi pi-search" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="Municípios" icon="pi pi-user">
+                        <p:menuitem value="Cadastrar" icon="pi pi-plus-circle" url="#"/>
+                        <p:menuitem value="Pesquisar" icon="pi pi-search" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="Escolas" icon="pi pi-user">
+                        <p:menuitem value="Cadastrar" icon="pi pi-plus-circle" url="#"/>
+                        <p:menuitem value="Pesquisar" icon="pi pi-search" url="#"/>
+                    </p:submenu>
+
+                </p:menubar>
+            </h:form>
+        </div>
+
     </h:body>
 </html>

@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Lista de presença</title>
+    </h:head>
+
+    <h:body>
+
+
+        <div class="card">
+            <h:form>
+                <p:menubar>
+                    <p:submenu label="Alunos" icon="pi pi-user">
+                        <p:menuitem value="Cadastrar" icon="pi pi-user-plus" url="aluno.xhtml"/>
+                        <p:menuitem value="Pesquisar" icon="pi pi-search" url="pesquisarAluno.xhtml"/>
+                    </p:submenu>
+                    <p:submenu label="GREs" icon="pi pi-user">
+                        <p:menuitem value="Cadastrar" icon="pi pi-plus-circle" url="#"/>
+                        <p:menuitem value="Pesquisar" icon="pi pi-search" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="Municípios" icon="pi pi-user">
+                        <p:menuitem value="Cadastrar" icon="pi pi-plus-circle" url="#"/>
+                        <p:menuitem value="Pesquisar" icon="pi pi-search" url="#"/>
+                    </p:submenu>
+                    <p:submenu label="Escolas" icon="pi pi-user">
+                        <p:menuitem value="Cadastrar" icon="pi pi-plus-circle" url="#"/>
+                        <p:menuitem value="Pesquisar" icon="pi pi-search" url="#"/>
+                    </p:submenu>
+
+                </p:menubar>
+            </h:form>
+        </div>
+
+        <h:form style="display: flex; flex-direction: column; align-items: center; justify-items: center; margin-top: 99px" id="formulario">
+            <p:growl id="growl" showDetail="true" />
+            <span class="ui-float-label field" style="display: flex; flex-direction: column;">
+                <p:inputText styleClass="block" id="float-input" value="#{alunoManager.aluno.matricula}"/>
+                <p:outputLabel styleClass="block" for="float-input" value="Matrícula"/>
+                <small style="margin-bottom: -12px">Insira o número de matrícula</small>
+            </span>
+            <span class="ui-float-label field" style="display: flex; flex-direction: column; margin-top: 33px">
+                <p:inputText styleClass="block" id="float-inputt" value="#{alunoManager.aluno.nome}"/>
+                <p:outputLabel styleClass="block" for="float-inputt" value="Nome"/>
+                <small style="margin-bottom: -12px">Insira o seu nome</small>
+            </span>
+            <p:commandButton value="Pesquisar Aluno" icon="pi pi-search" style="margin-top: 66px" actionListener="#{alunoManager.pesquisar()}" update="@form"/>
+
+            <p:dataTable value="#{alunoManager.alunos}" var="aluno" id="dataT">
+                <p:column headerText="Matrícula">
+                    <p:outputLabel value="#{aluno.matricula}" />
+                </p:column>
+                <p:column headerText="Nome">
+                    <p:outputLabel value="#{aluno.nome}"/>
+                </p:column>
+                <p:column headerText="Ações" width="60">
+                    <span style="display: flex; flex-direction: row; gap: 12px">
+                        <p:commandButton icon="pi pi-user-minus" value="#{aluno.setAtivo(false)}" actionListener="#{alunoManager.alunoServico.atualizar(aluno)}" />
+                        <p:commandButton icon="pi pi-user-edit"/>
+                    </span>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+    </h:body>
+</html>
