@@ -1,5 +1,6 @@
 package io.programe.presenca.utilitarios;
 
+import io.programe.presenca.modelos.Municipio;
 import io.programe.presenca.servicos.MunicipioServico;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
@@ -11,6 +12,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.primefaces.PrimeFaces;
+import org.primefaces.model.DialogFrameworkOptions;
 
 @Named
 @RequestScoped
@@ -25,26 +28,45 @@ public class MunicipioSelecao {
     private String nome;
     private String[] listona;
     private int contador;
-    
+
     @EJB
     MunicipioServico municipioServico;
+
     @PostConstruct
     public void init() {
 
-        nome = municipioServico.todosNomesMunicipio().replaceAll("([\\[\\]])", "");
-        listona = nome.split(",");
-        contador = 1;
-        municipiosPiaui = new HashMap<>();
-        for (String a : listona) {
-            municipiosPiaui.put(a, contador);
-            contador += 1;
-        }
+//        nome = municipioServico.todosNomesMunicipio().replaceAll("([\\[\\]])", "");
+//        listona = nome.split(",");
+//        contador = 1;
+//        municipiosPiaui = new HashMap<>();
+//        for (String a : listona) {
+//            municipiosPiaui.put(a, contador);
+//            contador += 1;
+//        }
+//
+//        //options
+//        options = new ArrayList<>();
+//        for (int i = 0; i < 20; i++) {
+//            options.add("Option " + i);
+//        }
+        listona = new String[3];
+    }
 
-        //options
-        options = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            options.add("Option " + i);
-        }
+    public void viewResponsive() {
+        DialogFrameworkOptions options = DialogFrameworkOptions.builder()
+                .modal(true)
+                .fitViewport(true)
+                .responsive(true)
+                .width("900px")
+                .contentWidth("100%")
+                .resizeObserver(true)
+                .resizeObserverCenter(true)
+                .resizable(false)
+                .styleClass("max-w-screen")
+                .iframeStyleClass("max-w-screen")
+                .build();
+
+        PrimeFaces.current().dialog().openDynamic("diasAulas", options, null);
     }
 
     public String getSelectedOption() {
@@ -118,6 +140,5 @@ public class MunicipioSelecao {
     public void setContador(int contador) {
         this.contador = contador;
     }
-    
 
 }

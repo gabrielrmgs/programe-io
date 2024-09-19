@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package io.programe.presenca.genericos;
 
 import jakarta.persistence.EntityManager;
@@ -10,10 +6,8 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- *
- * @author Gabri
- */
+
+
 @Getter
 @Setter
 public class ServicoGenerico<T> {
@@ -34,10 +28,7 @@ public class ServicoGenerico<T> {
     
     public void atualizar(T entidade) {
         entityManager.merge(entidade);
-    }
-    
-    public void remover (T entidade) {
-        
+        entityManager.flush();
     }
     
     public List<T> findAll() {

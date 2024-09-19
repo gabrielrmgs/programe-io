@@ -33,28 +33,66 @@
                 </p:menubar>
             </h:form>
         </div>
-        <h:form style="display: flex; flex-direction: column; align-items: center; justify-items: center; margin-top: 99px" id="formulario">
-            <p:growl id="growl" showDetail="true" />
-            <span class="ui-float-label field" style="display: flex; flex-direction: column;">
-                <p:inputText styleClass="block" id="float-input" value="#{alunoManager.aluno.matricula}"/>
-                <p:outputLabel styleClass="block" for="float-input" value="Matrícula"/>
-                <small style="margin-bottom: -12px">Insira o número de matrícula</small>
-            </span>
-            <span class="ui-float-label field" style="display: flex; flex-direction: column; margin-top: 33px">
-                <p:inputText styleClass="block" id="float-inputt" value="#{alunoManager.aluno.nome}"/>
-                <p:outputLabel styleClass="block" for="float-inputt" value="Nome"/>
-                <small style="margin-bottom: -12px">Insira o seu nome</small>
-            </span>
-            <div class="field col-12 md:col-4" style="margin-top: 24px">
-                <p:selectOneMenu id="hideNoselectionOption" value="#{municipioSelecao.hideNoSelectOption}"
-                                 hideNoSelectionOption="#{not empty municipioSelecao.hideNoSelectOption}">
-                    <p:ajax update="@this" process="@this"/>
-                    <f:selectItem itemLabel="Selecione sua cidade" itemValue="#{alunoManager.aluno.municipio}" noSelectionOption="true"/>
-                    <f:selectItems value="#{municipioSelecao.municipiosPiaui}"/>
+        <h:form style="display: flex; flex-direction: column; align-items: center; justify-items: center; margin-top: 99px" id="form">
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Novo Aluno" icon="pi pi-plus"
+                                     update=":dialogs:manage-product-content" oncomplete="PF('manageProductDialog').show()"
+                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                        <p:resetInput target=":dialogs:manage-product-content" />
+                    </p:commandButton>
 
-                </p:selectOneMenu>
-            </div>
-            <p:commandButton value="Marcar presença" style="margin-top: 66px" actionListener="#{alunoManager.salvar()}" update="@form"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+            <h1>Cadastre um Aluno</h1>
+            <p:panel>
+                <p:growl/>
+                <span class="ui-float-label field" style="display: flex; flex-direction: column;" >
+                    <p:inputText styleClass="block" id="float-input" value="#{alunoManager.aluno.matricula}"/>
+                    <p:outputLabel styleClass="block" for="float-input" value="Matrícula"/>
+                    <small style="margin-bottom: -12px">Insira o número de matrícula</small>
+                </span>
+                <span class="ui-float-label field" style="display: flex; flex-direction: column; margin-top: 33px">
+                    <p:inputText styleClass="block" id="float-inputt" value="#{alunoManager.aluno.nome}"/>
+                    <p:outputLabel styleClass="block" for="float-inputt" value="Nome"/>
+                    <small style="margin-bottom: -12px">Insira o seu nome</small>
+                </span>
+                <!--                <div class="field col-12 md:col-4" style="margin-top: 24px">
+                                    <p:selectOneMenu id="hideNoselectionOption" value="#{municipioSelecao.hideNoSelectOption}"
+                                                     hideNoSelectionOption="#{not empty municipioSelecao.hideNoSelectOption}">
+                                        <p:ajax update="@this" process="@this"/>
+                                        <f:selectItem itemLabel="Selecione sua cidade" itemValue="#{alunoManager.aluno.municipio}" noSelectionOption="true"/>
+                                        <f:selectItems value="#{municipioSelecao.municipiosPiaui}"/>
+                
+                                    </p:selectOneMenu>
+                                </div>-->
+                <p:commandButton value="Marcar presença" style="margin-top: 66px" actionListener="#{alunoManager.salvar()}" update="@form"/>
+            </p:panel>
+        </h:form>
+        <h:form id="dialogs">
+            <p:dialog header="Aluno novo" showEffect="fade" modal="true" widgetVar="manageProductDialog"
+                      responsive="true">
+                <p:outputPanel id="manage-product-content" class="ui-fluid">
+                    <p:outputPanel rendered="#{not empty alunoManager.aluno}">
+                        <div class="field">
+                            <p:outputLabel for="name">Nome</p:outputLabel>
+                            <p:inputText id="name" value="#{alunoManager.aluno.nome}" required="true" />
+                        </div>
+                        <div class="field">
+                            <p:outputLabel for="description">Matrícula</p:outputLabel>
+                            <p:inputTextarea id="description" value="#{alunoManager.aluno.matricula}" />
+                        </div>
+                    </p:outputPanel>
+                </p:outputPanel>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Salvar" icon="pi pi-check" actionListener="#{alunoManager.salvar}"
+                                     update="manage-product-content" process="manage-product-content @this" />
+                    <p:commandButton value="Cancel" icon="pi pi-times" onclick="PF('manageProductDialog').hide()"
+                                     class="ui-button-secondary" type="button" />
+                </f:facet>
+            </p:dialog>
+
         </h:form>
     </h:body>
 </html>

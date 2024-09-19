@@ -31,8 +31,75 @@
                     </p:submenu>
 
                 </p:menubar>
+                <p:commandButton value="Aulas" icon="pi pi-plus"
+                                 update=":dialogs:manage-product-content" oncomplete="PF('manageProductDialog').show()"
+                                 styleClass="ui-button-success" style="margin-right: .5rem;" onclick="#{alunoManager.pesquisar()}">
+                    <p:resetInput target=":dialogs:manage-product-content" />
+                </p:commandButton>
             </h:form>
         </div>
+        <h:form>
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center">
+                <h1>Insira sua matrícula abaixo:</h1>
+                <span class="ui-float-label field" style="margin-bottom: 33px">
+                    <p:inputText styleClass="block" value="#{alunoManager.aluno.matricula}" id="float-input" />
+                    <p:outputLabel styleClass="block" value="Matrícula" for="float-input"/>
+                    <p:commandButton style="margin-left: 21px" icon="pi pi-search" />
+                </span>
+                <p:dataTable value="#{alunoManager.alunos}" var="aluno">
+                    <p:column headerText="Matéria">
+                        <p:outputLabel/>
+                    </p:column>
+                    <p:column headerText="Aula">
+                        <p:outputLabel/>
+                    </p:column>
+                    <p:column headerText="Dia">
+                        <p:outputLabel/>
+                    </p:column>
+                    <p:column headerText="Presença">
+                        <p:outputLabel/>
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </h:form>
 
+
+
+        <h:form id="dialogs">
+            <p:dialog header="Aluno novo" showEffect="fade" modal="true" widgetVar="manageProductDialog"
+                      responsive="true" width="720" height="420">
+                <p:outputPanel id="manage-product-content" class="ui-fluid">
+                    <!-- <p:outputPanel rendered="#not empty alunoManager.aluno}">
+                         <div class="field">
+                             <p:outputLabel for="name">Nome</p:outputLabel>
+                             <p:inputText id="name" value="#alunoManager.aluno.nome}" required="true" />
+                         </div>
+                         <div class="field">
+                             <p:outputLabel for="description">Matrícula</p:outputLabel>
+                             <p:inputTextarea id="description" value="#alunoManager.aluno.matricula}" />
+                         </div>
+                     </p:outputPanel>
+                    -->
+                    <p:dataTable var="aluno" value="#{alunoManager.alunos}">
+                        <p:column headerText="Matrícula">
+                            <p:outputLabel value=""/>
+                        </p:column>
+                        <p:column headerText="Nome">
+                            <p:outputLabel value="#{aluno.nome}"/>
+                        </p:column>
+                        <p:column headerText="Data">
+                            <p:outputLabel value="#{aluno.dataCadastro}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:outputPanel>
+                <f:facet name="footer">
+                    <!--                    <p:commandButton value="Salvar" icon="pi pi-check" actionListener="alunoManager.salvar"
+                                                         update="manage-product-content" process="manage-product-content @this" />-->
+                    <!--                    <p:commandButton value="Cancel" icon="pi pi-times" onclick="PF('manageProductDialog').hide()"
+                                                         class="ui-button-secondary" type="button" />-->
+                </f:facet>
+            </p:dialog>
+
+        </h:form>
     </h:body>
 </html>

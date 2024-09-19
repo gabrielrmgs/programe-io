@@ -59,7 +59,7 @@
                 </p:column>
                 <p:column headerText="Ações" width="60">
                     <span style="display: flex; flex-direction: row; gap: 12px">
-                        <p:commandButton icon="pi pi-user-minus" value="#{aluno.setAtivo(false)}" actionListener="#{alunoManager.alunoServico.atualizar(aluno)}" />
+                        <p:commandButton icon="pi pi-user-minus" actionListener="#{alunoManager.instanciar()}"/>
                         <p:commandButton icon="pi pi-user-edit"/>
                     </span>
                 </p:column>
